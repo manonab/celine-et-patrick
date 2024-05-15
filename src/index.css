@@ -29,7 +29,7 @@
     src: url("/assets/fonts/aauxnext/aauxnextmedium.otf") format("truetype");
   }
   body {
-    font-family: "AauxNMedium";
+    font-family: "NoirProMedium";
     background-color: #F0EAD6;
   }
 }

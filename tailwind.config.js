@@ -4,7 +4,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				wedding: "#ede0d4",
+				greenWedding: "#fff1e6",
+				wedding: "#e9edc9",
 			},
 		},
 	},
