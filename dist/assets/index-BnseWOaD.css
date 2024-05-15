@@ -1,0 +1,1 @@
+@tailwind base;@tailwind components;@tailwind utilities;@layer utilities{.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.shadow-base{box-shadow:9px 6px 24px #17234f14}}@layer base{body{margin:auto}}

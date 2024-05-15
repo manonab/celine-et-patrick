@@ -1,13 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+@layer base {
+  @font-face {
+    font-family: "NoirProMedium";
+    src: url("/assets/fonts/noirpro/NoirPro-Medium.otf") format("truetype");
+  }
+  @font-face {
+    font-family: "NoirProRegular";
+    src: url("/assets/fonts/noirpro/NoirPro-Regular.otf") format("truetype");
+  }
+  @font-face {
+    font-family: "AauxNBlack";
+    src: url("/assets/fonts/aauxnext/aauxnextblack.otf") format("truetype");
+  }
+  @font-face {
+    font-family: "AauxNBold";
+    src: url("/assets/fonts/aauxnext/aauxnextbold.otf") format("truetype");
+  }
+  @font-face {
+    font-family: "AauxNLight";
+    src: url("/assets/fonts/aauxnext/aauxnextlight.otf") format("truetype");
+  }
+  @font-face {
+    font-family: "AauxNMedium";
+    src: url("/assets/fonts/aauxnext/aauxnextmedium.otf") format("truetype");
+  }
+  body {
+    font-family: "AauxNMedium";
+    background-color: #F0EAD6;
+  }
 }
