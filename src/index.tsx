@@ -1,27 +1,22 @@
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Route } from './routes';
+import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import "./index.css"
-import { QuestionsProvider } from "./utils/questions-context";
 import { Result } from "./routes/results";
+import { QuestionnaireProvider } from "./utils/questions-context";
+import { MyApp } from "./routes";
+import Questionnaire from "./components/form/questionnaire";
 const rootDiv = document.getElementById("root");
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Route />,
-    children: [
-      {
-        path: "results",
-        element: <Result />,
-      },
-    ]
-  }
-]);
+
 const App = () => {
   return (
-    <QuestionsProvider>
-    <RouterProvider router={router} />
-    </QuestionsProvider>
+    <BrowserRouter>
+      <QuestionnaireProvider>
+        <Routes>
+          <Route path="/" element={<Questionnaire />} />
+          <Route path="/results/:percentage" element={<Result />} />
+        </Routes>
+      </QuestionnaireProvider>
+    </BrowserRouter>
   );
 };
 

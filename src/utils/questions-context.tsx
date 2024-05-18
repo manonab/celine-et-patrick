@@ -1,41 +1,49 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
-interface Question {
-  id: number;
-  question: string;
-  options: { option: string; text: string; }[];
+interface Answer {
+  questionId: number;
+  answer: string | null;
 }
 
-interface QuestionsContextType {
-  questions: Question[];
-  addQuestion: (question: Question) => void;
-  removeQuestion: (questionId: number) => void;
+interface QuestionnaireContextType {
+  userAnswers: Answer[];
+  updateUserAnswers: (questionId: number, answer: string | null) => void;
 }
 
-const QuestionsContext = createContext<QuestionsContextType | undefined>(undefined);
+const QuestionnaireContext = createContext<QuestionnaireContextType | undefined>(undefined);
 
-export const useQuestions = () => {
-  const context = useContext(QuestionsContext);
+export const useQuestionnaireContext = () => {
+  const context = useContext(QuestionnaireContext);
   if (!context) {
-    throw new Error('useQuestions must be used within a QuestionsProvider');
+    throw new Error('useQuestionnaireContext must be used within a QuestionnaireProvider');
   }
   return context;
 };
 
-export const QuestionsProvider = ({ children }: { children: ReactNode }) => {
-  const [questions, setQuestions] = useState<Question[]>([]);
+export const QuestionnaireProvider = ({ children }: { children: ReactNode }) => {
+  const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
 
-  const addQuestion = (question: Question) => {
-    setQuestions(prevQuestions => [...prevQuestions, question]);
+  const updateUserAnswers = (questionId: number, answer: string | null) => {
+    setUserAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers];
+      const existingAnswerIndex = updatedAnswers.findIndex(item => item.questionId === questionId);
+      if (existingAnswerIndex !== -1) {
+        updatedAnswers[existingAnswerIndex] = { questionId, answer };
+      } else {
+        updatedAnswers.push({ questionId, answer });
+      }
+      return updatedAnswers;
+    });
   };
 
-  const removeQuestion = (questionId: number) => {
-    setQuestions(prevQuestions => prevQuestions.filter(question => question.id !== questionId));
+  const contextValue: QuestionnaireContextType = {
+    userAnswers,
+    updateUserAnswers,
   };
 
   return (
-    <QuestionsContext.Provider value={{ questions, addQuestion, removeQuestion }}>
+    <QuestionnaireContext.Provider value={contextValue}>
       {children}
-    </QuestionsContext.Provider>
+    </QuestionnaireContext.Provider>
   );
 };

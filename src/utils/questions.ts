@@ -1,5 +1,6 @@
 export const questionsData = [
   {
+		id:0,
     question: "Quand et où avons-nous eu notre première rencontre inoubliable ?",
     options: [
       {
@@ -21,6 +22,7 @@ export const questionsData = [
     ]
   },
   {
+		id:1,
     question: "Quel a été notre 1e voyage ensemble?",
     options: [
       {
@@ -42,6 +44,7 @@ export const questionsData = [
     ]
   },
   {
+		id:2,
     question: "Qui est le champion du monde pour verser une larme lors d'un film émouvant ?",
     options: [
       {
@@ -55,6 +58,7 @@ export const questionsData = [
     ]
   },
   {
+		id:3,
     question: "Combien de temps Céline a fait patienter Patrick ?",
     options: [
       {
@@ -76,6 +80,7 @@ export const questionsData = [
     ]
   },
   {
+		id:4,
     question: "QUESTION BONUS",
     options: [
       {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Option {
   option: string;
@@ -12,6 +12,10 @@ interface QuestionProps {
   onPrev: () => void;
   isFirst: boolean;
   isLast: boolean;
+  onAnswerSelected: (selectedOptions: string[]) => void;
+  canBeValidated: boolean;
+  calculateSuccessRate: () => void;
+  initialSelectedOptions?: string[];
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -21,53 +25,83 @@ const Question: React.FC<QuestionProps> = ({
   onPrev,
   isFirst,
   isLast,
+  onAnswerSelected,
+  canBeValidated,
+  calculateSuccessRate,
+  initialSelectedOptions = []
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(initialSelectedOptions);
+
+  useEffect(() => {
+    setSelectedOptions(initialSelectedOptions);
+  }, [initialSelectedOptions]);
 
   const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
+    let updatedOptions;
+    if (selectedOptions.includes(option)) {
+      updatedOptions = selectedOptions.filter(opt => opt !== option);
+    } else {
+      updatedOptions = [...selectedOptions, option];
+    }
+    setSelectedOptions(updatedOptions);
+    onAnswerSelected(updatedOptions);
   };
 
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-2xl font-bold mb-4">{question}</h2>
-      <div className=" h-auto px-3 py-5">
+      <div className="h-auto px-3 py-5">
         {options.map((option: Option) => (
           <div
             key={option.option}
-            className={`rounded p-2 m-2 text-left text-xl font-aauxlight option border ${selectedOption === option.option ? 'selected bg-red-200  border-white  text-white' : ' border-red-200 '}`}
+            className={`rounded p-2 m-2 text-left text-xl font-aauxlight option border cursor-pointer ${selectedOptions.includes(option.option) ? 'selected bg-red-200 border-white text-white' : 'border-red-200'}`}
             onClick={() => handleOptionSelect(option.option)}
           >
             <input
-              type="radio"
+              type="checkbox"
               id={option.option}
-              className='hidden mb-4'
+              className='hidden'
               name="options"
               value={option.option}
-              checked={selectedOption === option.option}
-              onChange={() => handleOptionSelect(option.option)}
+              checked={selectedOptions.includes(option.option)}
+              readOnly
             />
-            <label htmlFor={option.option} className=''>{option.text}</label>
+            <p id={option.option} className='w-full h-full cursor-pointer'>{option.text}</p>
           </div>
         ))}
       </div>
       <div className="flex">
-        <button
-          onClick={onPrev}
-          disabled={isFirst}
-          className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 text-gray'
-            }`}
-        >
-          Retour
-        </button>
-        <button
-          onClick={onNext}
-          disabled={isLast || !selectedOption}
-          className={`px-4 py-2 rounded ${isLast || !selectedOption ? 'bg-gray-300 cursor-not-allowed' : 'bg-red-200 text-white'
-            }`}
-        >
-          Suivant
-        </button>
+        {!canBeValidated ?
+          <div>
+            <button
+              onClick={onPrev}
+              disabled={isFirst}
+              className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 text-gray'}`}
+            >
+              Retour
+            </button>
+            <button
+              onClick={onNext}
+              disabled={isLast || selectedOptions.length === 0}
+              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-red-200 text-gray'}`}
+            >
+              Suivant
+            </button>
+          </div>
+          :
+          <div>
+            <button
+              onClick={onPrev}
+              disabled={isFirst}
+              className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 text-gray'}`}
+            >
+              Retour
+            </button>
+            <button onClick={calculateSuccessRate} className="mt-4 px-4 py-2 bg-red-200 text-white rounded">
+              Valider les réponses
+            </button>
+          </div>
+        }
       </div>
     </div>
   );
