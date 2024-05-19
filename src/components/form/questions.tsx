@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { CheckOutlined } from "@mui/icons-material";
 
 interface Option {
   option: string;
@@ -50,7 +50,7 @@ const Question: React.FC<QuestionProps> = ({
 
   return (
     <div className="flex flex-col items-center mb-10">
-      <h2 className="text-2xl font-bold mb-4 mx-1 text-center">{question}</h2>
+      <h2 className="text-2xl font-bold mb-4 mx-1 text-center text-hotChocolate">{question}</h2>
       <div className="h-auto px-3 py-5">
         {options.map((option: Option) => (
           <div
@@ -68,9 +68,11 @@ const Question: React.FC<QuestionProps> = ({
               readOnly
             />
             {selectedOptions.includes(option.option) && (
-              <CheckCircleIcon className="absolute bottom-14 -right-2.5 text-[#448B71] mt-1 mr-1" />
+              <div className="absolute -right-4 top-0 flex size-[20px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-greenWedding">
+                <CheckOutlined sx={{ fontSize: 14 }} className="text-white" />
+              </div>            
             )}
-            <p id={option.option} className={`w-full h-full cursor-pointer ${selectedOptions.includes(option.option) ? "text" : ""}`}>{option.text}</p>
+            <p id={option.option} className={`w-full h-full cursor-pointer text-chocolat ${selectedOptions.includes(option.option) ? "" : ""}`}>{option.text}</p>
           </div>
         ))}
       </div>
@@ -87,7 +89,7 @@ const Question: React.FC<QuestionProps> = ({
             <button
               onClick={onNext}
               disabled={isLast || selectedOptions.length === 0}
-              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-[#448B71] text-white'}`}
+              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-greenWedding text-white'}`}
             >
               Suivant
             </button>
@@ -97,11 +99,11 @@ const Question: React.FC<QuestionProps> = ({
             <button
               onClick={onPrev}
               disabled={isFirst}
-              className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 text-gray'}`}
+              className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 '}`}
             >
               Retour
             </button>
-            <button onClick={calculateSuccessRate} className="mt-4 px-4 py-2 bg-[#448B71] text-white rounded">
+            <button onClick={calculateSuccessRate} className="mt-4 px-4 py-2 bg-greenWedding text-white rounded">
               Valider les réponses
             </button>
           </div>

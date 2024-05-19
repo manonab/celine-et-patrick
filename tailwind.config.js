@@ -4,8 +4,10 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				greenWedding: "#fff1e6",
+				greenWedding: "#448B71",
 				wedding: "#e9edc9",
+				chocolat: "#7B3F00",
+				hotChocolate: "#3E1F00",
 			},
 			fontFamily: {
 				npmedium: ["NoirProMedium"],
