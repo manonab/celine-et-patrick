@@ -13,7 +13,7 @@ const Questionnaire: React.FC = () => {
     1: ['C'],
     2: ['B'],
     3: ['C'],
-    4: ['B', 'D'], // Bonus question with multiple correct answers
+    4: ['B', 'D'],
   };
 
   const nextQuestion = () => {
@@ -53,6 +53,7 @@ const Questionnaire: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
+      <img src='./assets/img/celine-patrick.jpg' alt="céline et patrick à NY" className='w-full h-[250px] object-cover object-center mb-10' />
       <Question
         question={questionsData[currentQuestionIndex].question}
         options={questionsData[currentQuestionIndex].options}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 interface Option {
   option: string;
@@ -48,13 +49,13 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-2xl font-bold mb-4">{question}</h2>
+    <div className="flex flex-col items-center mb-10">
+      <h2 className="text-2xl font-bold mb-4 mx-1 text-center">{question}</h2>
       <div className="h-auto px-3 py-5">
         {options.map((option: Option) => (
           <div
             key={option.option}
-            className={`rounded p-2 m-2 text-left text-xl font-aauxlight option border cursor-pointer ${selectedOptions.includes(option.option) ? 'selected bg-red-200 border-white text-white' : 'border-red-200'}`}
+            className={`relative shadow-sm rounded p-2.5 m-2 text-left text-xl font-aauxlight option cursor-pointer ${selectedOptions.includes(option.option) ? 'selected bg-[#F5F5F5] ' : 'bg-[#F0E0D2] '}`}
             onClick={() => handleOptionSelect(option.option)}
           >
             <input
@@ -66,7 +67,10 @@ const Question: React.FC<QuestionProps> = ({
               checked={selectedOptions.includes(option.option)}
               readOnly
             />
-            <p id={option.option} className='w-full h-full cursor-pointer'>{option.text}</p>
+            {selectedOptions.includes(option.option) && (
+              <CheckCircleIcon className="absolute bottom-14 -right-2.5 text-[#448B71] mt-1 mr-1" />
+            )}
+            <p id={option.option} className={`w-full h-full cursor-pointer ${selectedOptions.includes(option.option) ? "text" : ""}`}>{option.text}</p>
           </div>
         ))}
       </div>
@@ -83,7 +87,7 @@ const Question: React.FC<QuestionProps> = ({
             <button
               onClick={onNext}
               disabled={isLast || selectedOptions.length === 0}
-              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-red-200 text-gray'}`}
+              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-[#448B71] text-white'}`}
             >
               Suivant
             </button>
@@ -97,7 +101,7 @@ const Question: React.FC<QuestionProps> = ({
             >
               Retour
             </button>
-            <button onClick={calculateSuccessRate} className="mt-4 px-4 py-2 bg-red-200 text-white rounded">
+            <button onClick={calculateSuccessRate} className="mt-4 px-4 py-2 bg-[#448B71] text-white rounded">
               Valider les réponses
             </button>
           </div>
