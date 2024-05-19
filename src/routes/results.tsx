@@ -2,11 +2,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 export const Result: React.FC = () => {
-  const { percentage } = useParams<{ percentage: string }>();
+  const { percentage, correctCount, totalCount } = useParams<{ percentage: string, correctCount: string, totalCount: string }>();
   const percentageNum = parseFloat(percentage ?? '0');
+  const correctCountNum = parseInt(correctCount ?? '0');
+  const totalCountNum = parseInt(totalCount ?? '0');
 
   return (
     <div className="mx-2 mb-5 mt-10 text-center font-npmedium">
+      <p className='text-lg mb-4'>Vous avez répondu correctement à {correctCountNum} question(s) sur {totalCountNum}</p>
       {percentageNum > 10 && percentageNum < 30 && (
         <div className="text-lg">
           <p className='text-2xl font-aauxblack text-red-300'>Bon, pas ouf tes réponses, t'as le droit qu'au début du menu. !</p>
@@ -82,8 +85,7 @@ export const Result: React.FC = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
-}
+};

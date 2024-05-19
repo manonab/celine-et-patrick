@@ -13,7 +13,7 @@ const App = () => {
       <QuestionnaireProvider>
         <Routes>
           <Route path="/" element={<Questionnaire />} />
-          <Route path="/results/:percentage" element={<Result />} />
+          <Route path="/results/:percentage/:correctCount/:totalCount" element={<Result />} />
         </Routes>
       </QuestionnaireProvider>
     </BrowserRouter>

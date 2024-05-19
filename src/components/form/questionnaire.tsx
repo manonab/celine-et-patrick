@@ -7,6 +7,7 @@ const Questionnaire: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<{ questionId: number, answer: string[] }[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
+
   const correctAnswers: Record<number, string[]> = {
     0: ['C'],
     1: ['C'],
@@ -46,7 +47,7 @@ const Questionnaire: React.FC = () => {
     });
 
     const successRate = (correctCount / questionsData.length) * 100;
-    navigate(`/results/${successRate.toFixed(2)}`);
+    navigate(`/results/${successRate.toFixed(2)}/${correctCount}/${questionsData.length}`);
     console.log('Taux de réussite:', successRate.toFixed(2) + '%');
   };
 
