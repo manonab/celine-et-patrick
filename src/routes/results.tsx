@@ -9,7 +9,7 @@ export const Result: React.FC = () => {
 
   return (
     <div className="first-letter  text-center font-npmedium bg-[#FFF8E7] px-4 py-5 h-screen w-screen">
-      <p className='text-sm mb-4 italic'>Vous avez répondu correctement à {correctCountNum} question(s) sur {totalCountNum}</p>
+      <p className='text-sm mb-4 italic'>Tu as répondu correctement à {correctCountNum} question(s) sur {totalCountNum}</p>
       {percentageNum === 0 && percentageNum < 10 && (
         <div>
           <p className='text-xl font-aauxblack text-greenWedding mx-2'>Ce n'est pas tout à fait parfait, alors tu as le droit de connaître seulement le début du menu !</p>
