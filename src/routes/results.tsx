@@ -43,7 +43,7 @@ export const Result: React.FC = () => {
       <div className="my-2">
         <h1 className="text-xl font-bold text-greenWedding">***</h1>
       </div>
-      <div className="space-y-6">
+      <div className="space-y-6  font-aauxmedium">
         {percentageNum === 0 && (
           <div className="text-base">
             <p>Quasi de veau braisé au romarin</p>

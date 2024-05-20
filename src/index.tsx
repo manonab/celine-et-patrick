@@ -3,8 +3,8 @@ import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } fro
 import "./index.css"
 import { Result } from "./routes/results";
 import { QuestionnaireProvider } from "./utils/questions-context";
-import { MyApp } from "./routes";
 import Questionnaire from "./components/form/questionnaire";
+import { MyApp } from "./routes";
 const rootDiv = document.getElementById("root");
 
 const App = () => {
@@ -12,7 +12,8 @@ const App = () => {
     <BrowserRouter>
       <QuestionnaireProvider>
         <Routes>
-          <Route path="/" element={<Questionnaire />} />
+          <Route path="/" element={<MyApp />} />
+          <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/results/:percentage/:correctCount/:totalCount" element={<Result />} />
         </Routes>
       </QuestionnaireProvider>
