@@ -89,7 +89,7 @@ const Question: React.FC<QuestionProps> = ({
             <button
               onClick={onNext}
               disabled={isLast || selectedOptions.length === 0}
-              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-greenWedding text-white'}`}
+              className={`px-4 py-2 rounded ${isLast || selectedOptions.length === 0 ? 'bg-gray-200 cursor-not-allowed' : 'bg-greenWedding text-white'}`}
             >
               Suivant
             </button>
@@ -99,7 +99,7 @@ const Question: React.FC<QuestionProps> = ({
             <button
               onClick={onPrev}
               disabled={isFirst}
-              className={`mr-4 px-4 py-2 rounded ${isFirst ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 '}`}
+              className={`mr-4 px-4 py-2 rounded bg-gray-200  ${isFirst && 'cursor-not-allowed'}`}
             >
               Retour
             </button>

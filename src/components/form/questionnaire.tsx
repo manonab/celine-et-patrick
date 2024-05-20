@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { questionsData } from '@/utils/questions';
 import Question from './questions';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../loader';
 
 const Questionnaire: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<{ questionId: number, answer: string[] }[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const correctAnswers: Record<number, string[]> = {
@@ -35,6 +37,7 @@ const Questionnaire: React.FC = () => {
   };
 
   const calculateSuccessRate = () => {
+    setLoading(true);
     let correctCount = 0;
     userAnswers.forEach(userAnswer => {
       const questionId = userAnswer.questionId;
@@ -47,9 +50,16 @@ const Questionnaire: React.FC = () => {
     });
 
     const successRate = (correctCount / questionsData.length) * 100;
-    navigate(`/results/${successRate.toFixed(2)}/${correctCount}/${questionsData.length}`);
-    console.log('Taux de réussite:', successRate.toFixed(2) + '%');
+
+    setTimeout(() => {
+      setLoading(false);
+      navigate(`/results/${successRate.toFixed(2)}/${correctCount}/${questionsData.length}`);
+    }, 2500); 
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -64,7 +74,7 @@ const Questionnaire: React.FC = () => {
         onAnswerSelected={selectAnswer}
         canBeValidated={currentQuestionIndex === questionsData.length - 1}
         calculateSuccessRate={calculateSuccessRate}
-        initialSelectedOptions={userAnswers[currentQuestionIndex]?.answer || []} // Pass initial selected options
+        initialSelectedOptions={userAnswers[currentQuestionIndex]?.answer || []}
       />
     </div>
   );

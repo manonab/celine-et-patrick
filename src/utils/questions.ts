@@ -85,7 +85,7 @@ export const questionsData = [
     options: [
       {
         option: "A",
-        text: "coup de foudre, ses yeux ont tellement brillé qu’ils auraient pu éclairer toute la salle"
+        text: "Coup de foudre, ses yeux ont tellement brillé qu’ils auraient pu éclairer toute la salle"
       },
       {
         option: "B",
