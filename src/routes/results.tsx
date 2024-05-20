@@ -22,22 +22,22 @@ export const Result: React.FC = () => {
       )}
       {percentageNum > 30 && percentageNum < 50 && (
         <div>
-          <p className='text-xl font-aauxblack text-greenWedding mx-2'>C'est un bon début, mais ce n'est pas encore tout à fait ça. Seule la première partie du menu vais te seras révéler!</p>
+          <p className='text-xl font-aauxblack text-greenWedding mx-2'>C'est un bon début, mais ce n'est pas encore tout à fait ça. Tu as le droit de connaître une partie du menu  !</p>
         </div>
       )}
       {percentageNum > 50 && percentageNum < 70 && (
         <div>
-          <p className='text-xl font-aauxblack text-greenWedding'>Bien, tu commences à connaître Céline et Patrick, mais il te reste encore un peu de chemin à parcourir !</p>
+          <p className='text-xl font-aauxblack text-greenWedding'>Bien, tu commences à connaître Céline et Patrick, mais il te reste encore un peu de chemin à parcourir, tu as le droit de connaître une partie du menu  !</p>
         </div>
       )}
       {percentageNum > 70 && percentageNum < 90 && (
         <div>
-          <p className='text-xl font-aauxblack text-greenWedding mx-2'>Félicitations, tu es presque incollable sur Céline et Patrick ! Tu connais presque tout le menu !</p>
+          <p className='text-xl font-aauxblack text-greenWedding mx-2'>Félicitations, tu es presque incollable sur Céline et Patrick ! Tu as le droit de connaître presque tout le menu !</p>
         </div>
       )}
       {percentageNum === 100 && (
         <div>
-          <p className='text-xl font-aauxblack text-greenWedding mx-2'>On peut dire que tu es imbattable sur Céline et Patrick ! Tu as désormais accès à tout le menu !</p>
+          <p className='text-xl font-aauxblack text-greenWedding mx-2'>On peut dire que tu es imbattable sur Céline et Patrick ! Tu as le droit de connaître tout le menu !</p>
         </div>
       )}
       <div className="my-2">
