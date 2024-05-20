@@ -31,7 +31,7 @@ export const MyApp = () => {
         to="/questionnaire"
         className="bg-greenWedding text-white font-bold py-2 px-4 rounded m-auto block mt-16 text-center w-1/2"
       >
-        Accèder au questionnaire
+        Accéder au questionnaire
       </Link>
     </div>
   );
