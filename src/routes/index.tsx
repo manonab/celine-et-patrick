@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const MyApp = () => {
   return (
     <div className="h-screen w-screen">
-      <h1 className="text-2xl text-center pt-16 mb-6 px-4 text-greenWedding">
+      <h1 className="text-2xl text-center pt-16 mb-10 px-4 text-greenWedding">
         Bienvenue à la grande aventure des “Quiz-z’amoureux” !
       </h1>
       <p className="text-justify px-4 font-aauxmedium">
@@ -29,7 +29,7 @@ export const MyApp = () => {
       </p>
       <Link
         to="/questionnaire"
-        className="bg-greenWedding text-white font-bold py-2 px-4 rounded m-auto block mt-4 text-center w-1/2"
+        className="bg-greenWedding text-white font-bold py-2 px-4 rounded m-auto block mt-16 text-center w-1/2"
       >
         Accèder au questionnaire
       </Link>
